@@ -20,6 +20,8 @@
 #include <NETWM>
 #include <KWindowSystem>
 
+#include <libodysseus.h>
+
 MainWindow::MainWindow(QQuickView *parent)
     : QQuickView(parent),
       m_appModel(new ApplicationModel),
@@ -36,6 +38,7 @@ MainWindow::MainWindow(QQuickView *parent)
     engine()->rootContext()->setContextProperty("appModel", m_appModel);
     engine()->rootContext()->setContextProperty("process", new ProcessProvider);
     engine()->rootContext()->setContextProperty("popupTips", new PopupTips);
+    engine()->rootContext()->setContextProperty("accentColor", LibOdysseus::getAccentColor().name());
     // engine()->rootContext()->setContextProperty("trashManager", new TrashManager);
     engine()->addImageProvider("icontheme", new IconThemeImageProvider);
 

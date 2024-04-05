@@ -14,6 +14,8 @@ set(QT Core Widgets Quick QuickControls2 X11Extras DBus)
 find_package(Qt5 REQUIRED ${QT})
 find_package(KF5WindowSystem REQUIRED)
 
+find_library(libodysseus-system NAMES libodysseus-system PATHS /usr/local/lib REQUIRED)
+
 set(SRCS
     src/applicationitem.h
     src/applicationmodel.cpp
@@ -54,6 +56,7 @@ target_link_libraries(${PROJECT_NAME}
         Qt5::X11Extras
         Qt5::DBus
         KF5::WindowSystem
+        ${libodysseus-system}
 )
 
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION /usr/bin)

@@ -8,7 +8,7 @@ Rectangle {
 
     property bool enableActivateDot: true
     property bool isActive: false
-    property var activateDotColor: "#2E64E6"
+    property var activateDotColor: accentColor
     property var inactiveDotColor: "#000000"
 
     property var popupText
@@ -91,7 +91,7 @@ Rectangle {
 
         onClicked: {
             if (mouse.button === Qt.LeftButton)
-                dockItem.clicked()
+                dockItem.clicked();
             else if (mouse.button === Qt.RightButton)
                 dockItem.rightClicked()
         }

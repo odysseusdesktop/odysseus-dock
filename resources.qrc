@@ -6,5 +6,6 @@
         <file>svg/launcher.svg</file>
         <file>qml/PopupTips.qml</file>
         <file>qml/Menu.qml</file>
+        <file>qml/TimeItem.qml</file>
     </qresource>
 </RCC>

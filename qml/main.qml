@@ -37,7 +37,7 @@ Rectangle {
         id: appList
         anchors.left: launcherItem.right
         anchors.top: parent.top
-        width: parent.width - launcherItem.width * 2
+        width: parent.width - launcherItem.width - timeItem.width
         height: parent.height
 
         ListView {
@@ -52,14 +52,21 @@ Rectangle {
         }
     }
 
-    DockItem {
-        id: trashItem
-        anchors.left: appList.right
-        anchors.top: parent.top
-        popupText: qsTr("Trash")
+//    DockItem {
+//        id: trashItem
+//        anchors.left: appList.right
+//        anchors.top: parent.top
+//        popupText: qsTr("Trash")
 
-        iconSizeRatio: 0.75
-        enableActivateDot: false
-        iconName: "user-trash-empty"
+//        iconSizeRatio: 0.75
+//        enableActivateDot: false
+//        iconName: "user-trash-empty"
+//    }
+
+    TimeItem {
+        id: timeItem
+        anchors.right: parent.right
+        anchors.rightMargin: 10
+        anchors.verticalCenter: parent.verticalCenter
     }
 }
