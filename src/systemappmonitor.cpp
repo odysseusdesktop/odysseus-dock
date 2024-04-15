@@ -6,6 +6,8 @@
 #include <QSettings>
 #include <QLocale>
 
+#include <QDebug>
+
 #define SystemApplicationsFolder "/usr/share/applications"
 
 static SystemAppMonitor *SELF = nullptr;
@@ -123,6 +125,7 @@ void SystemAppMonitor::addApplication(const QString &filePath)
     item->genericName = desktop.value("GenericName").toString();
     item->comment = desktop.value("Comment").toString();
     item->iconName = desktop.value("Icon").toString();
+    qDebug() << desktop.value("Icon").toString();
     item->startupWMClass = desktop.value("StartupWMClass").toString();
     item->args = appExec.split(" ");
 

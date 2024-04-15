@@ -13,7 +13,7 @@ Rectangle {
         anchors.fill: parent
         //radius: parent.height * 0.3
         opacity: 0.5
-        color: "white"
+        color: accentColor
         border.color: Qt.rgba(0, 0, 0, 0.1)
         border.width: 1
     }
@@ -22,11 +22,12 @@ Rectangle {
         id: launcherItem
         anchors.left: parent.left
         anchors.top: parent.top
+        width: 15
+        showIcon: false
 
-        iconSizeRatio: 0.75
+        iconSizeRatio: 1
         enableActivateDot: false
-        iconName: "qrc:/svg/launcher.svg"
-        popupText: qsTr("Launcher")
+        //iconName: "qrc:/svg/launcher.svg"
 
         onClicked: {
             process.showLauncherDBus();

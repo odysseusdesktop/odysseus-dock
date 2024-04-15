@@ -1,5 +1,6 @@
 #include "iconthemeimageprovider.h"
 #include <QIcon>
+#include <QDebug>
 
 IconThemeImageProvider::IconThemeImageProvider()
     : QQuickImageProvider(QQuickImageProvider::Pixmap)
@@ -9,6 +10,7 @@ IconThemeImageProvider::IconThemeImageProvider()
 QPixmap IconThemeImageProvider::requestPixmap(const QString &id, QSize *realSize,
                                               const QSize &requestedSize)
 {
+    qDebug() << "Requesting image: " << id;
     // Sanitize requested size
     QSize size(requestedSize);
     if (size.width() < 1)
@@ -21,8 +23,10 @@ QPixmap IconThemeImageProvider::requestPixmap(const QString &id, QSize *realSize
         *realSize = size;
 
     // Is it a path?
-    if (id.startsWith(QLatin1Char('/')))
+    if (id.contains(QLatin1Char('/'))) {
+        qDebug() << "Getting absolute path: " << id;
         return QPixmap(id).scaled(size);
+    }
 
     // Return icon from theme or fallback to a generic icon
     QIcon icon = QIcon::fromTheme(id);

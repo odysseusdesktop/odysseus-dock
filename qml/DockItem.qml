@@ -8,13 +8,14 @@ Rectangle {
 
     property bool enableActivateDot: true
     property bool isActive: false
+    property bool showIcon: true
     property var activateDotColor: accentColor
     property var inactiveDotColor: "#000000"
 
     property var popupText
 
     property double iconSizeRatio: 0.8
-    property var iconName
+    property string iconName
 
     signal clicked()
     signal rightClicked()
@@ -24,8 +25,12 @@ Rectangle {
     Image {
         id: icon
         source: {
-            return iconName ? iconName.indexOf("/") === 0 || iconName.indexOf("file://") === 0 || iconName.indexOf("qrc") === 0
-                              ? iconName : "image://icontheme/" + iconName : iconName;
+            if(iconName !== undefined) {
+                //console.log("QML Image: " + iconName);
+                /*return iconName ? iconName.indexOf("/") !== -1 || iconName.indexOf("file://") === 0 || iconName.indexOf("qrc") === 0
+                                  ? iconName : "image://icontheme/" + iconName : iconName;*/
+                return "image://icontheme/" + iconName;
+            }
         }
         sourceSize.width: parent.height * iconSizeRatio
         sourceSize.height: parent.height * iconSizeRatio
@@ -69,6 +74,8 @@ Rectangle {
                 }
             }
         ]
+
+        visible: showIcon
     }
 
     Text {
@@ -108,16 +115,28 @@ Rectangle {
     }
 
     Rectangle {
+        z: -9
         id: activeDot
-        width: parent.height * 0.07
-        height: width
-        color: isActive ? activateDotColor : inactiveDotColor
-        radius: height
-        visible: enableActivateDot
+        anchors.centerIn: parent
+        width: parent.width * 0.95
+        height: parent.height * 0.95
+        opacity: isActive ? 0.6 : 0.3
+        radius: 3
 
-        anchors {
-            top: icon.bottom
-            horizontalCenter: parent.horizontalCenter
+        gradient: Gradient {
+            GradientStop {
+                position: 0.0
+                color: Qt.rgba(255, 255, 255, 0.3)
+            }
+            GradientStop {
+                position: 1.0
+                color: "white"
+            }
         }
+
+        border.color: "white"
+        border.width: 2
+
+        visible: enableActivateDot
     }
 }
